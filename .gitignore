@@ -1,0 +1,8 @@
+#VS-Code
+.history
+
+testing*
+
+*.png
+__pycache__
+*.db

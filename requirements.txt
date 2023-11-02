@@ -1,0 +1,5 @@
+torch==2.0
+bcrypt
+flask_cors
+flask
+flask-login
