@@ -1,7 +1,6 @@
 import os
 import torch
 import binascii
-import requests
 
 from utils import *
 from UserDao import UserDao
@@ -134,6 +133,27 @@ def text2img():
             # Encode image data in base64
             image_data = b64encode(image_data).decode("utf-8")
             return jsonify({"success": True, "image": image_url}), 200
+    except Exception as e:
+        print(colored("Error generating image:", "red"), e)
+        return jsonify({"success": False, "message": "Error generating image"}), 500
+
+
+# Query the AI Chatbot
+@app.route("/text", methods=["POST"])
+@login_required
+def chat():
+    try:
+        data = request.get_json()
+        prompt = data["prompt"]
+
+        if prompt is None:
+            return jsonify({"success": False, "message": "Missing parameters"}), 400
+
+        # Response text
+        reply = query_chatbot(prompt)
+
+        if reply:
+            return jsonify({"success": True, "text": reply}), 200
     except Exception as e:
         print(colored("Error generating image:", "red"), e)
         return jsonify({"success": False, "message": "Error generating image"}), 500
