@@ -20,10 +20,65 @@
         <p class="italic font-semibold mt-10">Parameters:</p>
         <ul class="list-none pl-0">
             <li class="my-2">
-                <span class="font-bold">Name:</span> param1 description
+                <span class="font-bold">username</span> The username which you want to use
             </li>
             <li class="my-2">
-                <span class="font-bold">Name:</span> param2 description
+                <span class="font-bold">password</span> This password will allow you to access the API (hashed using
+                bcrypt)
+            </li>
+        </ul>
+    </div>
+    <div id="endpoint-2" class="border p-4 m-4">
+        <div class="flex justify-between">
+            <p class="text-2xl text-black justify-start">Create a user</p>
+            <p class="bg-green-500 text-white p-2 rounded justify-end">POST</p>
+        </div>
+        <h3 class="text-2xl font-bold">/login</h3>
+        <p class="italic">Upon providing correct credentials, a user session will be created using flask-login.</p>
+        <p class="italic font-semibold mt-10">Parameters:</p>
+        <ul class="list-none pl-0">
+            <li class="my-2">
+                <span class="font-bold">username</span> Your account's username
+            </li>
+            <li class="my-2">
+                <span class="font-bold">password</span> Your account's password
+            </li>
+        </ul>
+    </div>
+    <div id="endpoint-3" class="border p-4 m-4">
+        <div class="flex justify-between">
+            <p class="text-2xl text-black justify-start">Generate Image</p>
+            <p class="bg-green-500 text-white p-2 rounded justify-end">POST</p>
+        </div>
+        <h3 class="text-2xl font-bold">/text2img</h3>
+        <p class="italic">
+            Call this API Endpoint to generate an image from a given prompt.
+        </p>
+        <p class="italic font-semibold mt-10">Parameters:</p>
+        <ul class="list-none pl-0">
+            <li class="my-2">
+                <span class="font-bold">prompt</span> The prompt which will be used for the AI Image Generation
+            </li>
+            <li class="my-2">
+                <span class="font-bold">model</span> See <a href="http://localhost:5000/models">/models</a>, to see all
+                available AI Models.
+            </li>
+        </ul>
+    </div>
+    <div id="endpoint-4" class="border p-4 m-4">
+        <div class="flex justify-between">
+            <p class="text-2xl text-black justify-start">Query an LLM</p>
+            <p class="bg-green-500 text-white p-2 rounded justify-end">POST</p>
+        </div>
+        <h3 class="text-2xl font-bold">/text</h3>
+        <p class="italic">
+            Provide a prompt and AI will get you the answer (like ChatGPT).
+        </p>
+        <p class="italic font-semibold mt-10">Parameters:</p>
+        <ul class="list-none pl-0">
+            <li class="my-2">
+                <span class="font-bold">prompt</span>
+                The prompt which will be used for the AI Text Generation
             </li>
         </ul>
     </div>
