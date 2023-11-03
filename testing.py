@@ -40,11 +40,13 @@ def test_login():
 
 def test_login():
     # Login and get the session cookie
+    username = input("Enter username: ")
+    password = input("Enter password: ")
     login_response = requests.post(
         BASE_URL + "/login",
         json={
-            "username": "FujiwaraChoki",
-            "password": "sami1234",
+            "username": username,
+            "password": password,
         },
     )
 
