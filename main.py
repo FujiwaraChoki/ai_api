@@ -35,7 +35,7 @@ else:
     print(colored("\t=> Using CPU (Wrapper API).", "blue"))
     device = torch.device("cpu")
 
-MODELS = ["v1", "v2", "v2-beta", "v3", "lexica", "prodia"]
+MODELS = ("v1", "v2", "v2-beta", "v3", "lexica", "prodia")
 
 
 # Configure user_loader function to load user objects
