@@ -12,8 +12,8 @@ who can't afford to pay OpenAI's baffling prices.
 To install the API, simply run the following commands:
 
 ```bash
-git clone https://github.com/FujiwaraChoki/ai-api.git
-cd ai-api
+git clone https://github.com/FujiwaraChoki/ai_api.git
+cd ai_api
 pip install -r requirements.txt
 python main.py
 ```
