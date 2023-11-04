@@ -29,12 +29,14 @@ def generate_image(prompt: str, model: str) -> str:
         return None
 
 
-def query_chatbot(prompt: str) -> str:
+def query_chatbot(prompt: str, print_prompt: object) -> str:
     """
     Query the AI Chatbot
 
     :param prompt: Prompt to query the chatbot with
     """
+    print_prompt(prompt)
+
     url = f"https://hercai.onrender.com/v2/hercai?question={prompt}"
 
     r = requests.get(url)
@@ -53,3 +55,11 @@ def greet(name: str) -> str:
     :param name: Name of the user to greet
     """
     return f"Hello, {name}! I am your personal AI assistant. Start by visitng /help."
+
+def print_prompt(prompt: str) -> str:
+    """
+    Prints the prompt
+
+    :param prompt: Prompt to print
+    """
+    print(prompt)

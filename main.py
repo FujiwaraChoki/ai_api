@@ -171,7 +171,7 @@ def chat():
             return jsonify({"success": False, "message": "Missing parameters"}), 400
 
         # Response text
-        reply = query_chatbot(prompt)
+        reply = query_chatbot(prompt, print_prompt)
 
         if reply:
             return jsonify({"success": True, "text": reply}), 200
