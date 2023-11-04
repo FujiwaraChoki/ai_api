@@ -45,3 +45,11 @@ def query_chatbot(prompt: str) -> str:
         return reply
     else:
         return None
+
+def greet(name: str) -> str:
+    """
+    Greet a user
+
+    :param name: Name of the user to greet
+    """
+    return f"Hello, {name}! I am your personal AI assistant. Start by visitng /help."
