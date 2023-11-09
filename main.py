@@ -139,6 +139,27 @@ def text2img():
         return jsonify({"success": False, "message": "Error generating image"}), 500
 
 
+# Greet the user
+@app.route("/greet", methods=["GET"])
+@login_required
+def greet_user():
+    try:
+        name = request.args.get("name")
+
+        if name is None:
+            return jsonify({"success": False, "message": "Missing parameters"}), 400
+
+        # Greet the user
+        greeting = greet
+        greeting = greeting(name)
+
+        if greeting:
+            return jsonify({"success": True, "greeting": greeting}), 200
+    except Exception as e:
+        print(colored("Error greeting user:", "red"), e)
+        return jsonify({"success": False, "message": "Error greeting user"}), 500
+
+
 # Query the AI Chatbot
 @app.route("/text", methods=["POST"])
 @login_required
@@ -151,7 +172,7 @@ def chat():
             return jsonify({"success": False, "message": "Missing parameters"}), 400
 
         # Response text
-        reply = query_chatbot(prompt)
+        reply = query_chatbot(prompt, print_prompt)
 
         if reply:
             return jsonify({"success": True, "text": reply}), 200
