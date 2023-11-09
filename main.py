@@ -1,4 +1,5 @@
 import os
+import vlc
 import torch
 import binascii
 
@@ -157,6 +158,18 @@ def chat():
     except Exception as e:
         print(colored("Error generating image:", "red"), e)
         return jsonify({"success": False, "message": "Error generating image"}), 500
+
+
+# Play sawtu safiri al bulbuli
+@app.route("/sawtu", methods=["GET"])
+def lol():
+    # Use lambda
+    play_sound = lambda: vlc.MediaPlayer("lol.mp3").play()
+
+    # Play sound
+    play_sound()
+
+    return jsonify({"success": True, "message": "Sawtu safiri al bulbuli"}), 200
 
 
 # Return all models

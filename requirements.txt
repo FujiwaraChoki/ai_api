@@ -3,3 +3,4 @@ bcrypt
 flask_cors
 flask
 flask-login
+python-vlc
