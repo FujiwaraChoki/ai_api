@@ -193,6 +193,28 @@ def lol():
     return jsonify({"success": True, "message": "Sawtu safiri al bulbuli"}), 200
 
 
+# Accept two lists and send it back as one list, using a lambda function that takes the two lists as arguments
+@app.route("/sum", methods=["POST"])
+def sum():
+    try:
+        data = request.get_json()
+        list1 = data["list1"]
+        list2 = data["list2"]
+
+        if list1 is None or list2 is None:
+            return jsonify({"success": False, "message": "Missing parameters"}), 400
+
+        # Sum the two lists
+        sum = lambda list1, list2: list1 + list2
+        sum = sum(list1, list2)
+
+        if sum:
+            return jsonify({"success": True, "sum": sum}), 200
+    except Exception as e:
+        print(colored("Error summing lists:", "red"), e)
+        return jsonify({"success": False, "message": "Error summing lists"}), 500
+
+
 # Return all models
 @app.route("/models", methods=["GET"])
 def models():
