@@ -7,6 +7,7 @@ from utils import *
 from UserDao import UserDao
 from flask_cors import CORS
 from base64 import b64encode
+from functools import reduce
 from datetime import datetime
 from termcolor import colored
 from flask import Flask, request, jsonify
@@ -213,6 +214,94 @@ def sum():
     except Exception as e:
         print(colored("Error summing lists:", "red"), e)
         return jsonify({"success": False, "message": "Error summing lists"}), 500
+
+
+@app.route("/sort_list", methods=["GET"])
+def sort_list():
+    data = request.get_json()
+    list_to_sort = data["list_to_sort"]
+
+    # Sort the list using lambda functions and custom sorting
+    sort_list = lambda list: sorted(list, key=lambda x: x[1])
+
+    # Sort the list
+    sorted_list = sort_list(list_to_sort)
+
+    return jsonify({"success": True, "sorted_list": sorted_list}), 200
+
+
+@app.route("/f_demo", methods=["GET"])
+def f_demo():
+    data = request.get_json()
+    list_to_filter = data["list_to_filter"]
+
+    # Filter the list using lambda functions and custom filtering
+    filter_list = lambda list: list(filter(lambda x: x[1] > 2, list))
+
+    # Filter the list
+    filtered_list = filter_list(list_to_filter)
+
+    return jsonify({"success": True, "filtered_list": filtered_list}), 200
+
+
+@app.route("/m_demo", methods=["GET"])
+def m_demo():
+    data = request.get_json()
+    list_to_map = data["list_to_map"]
+
+    # Map the list using lambda functions and custom mapping
+    map_list = lambda list: list(map(lambda x: x[1] * 2, list))
+
+    # Map the list
+    mapped_list = map_list(list_to_map)
+
+    return jsonify({"success": True, "mapped_list": mapped_list}), 200
+
+
+@app.route("/r_demo", methods=["GET"])
+def r_demo():
+    data = request.get_json()
+    list_to_reduce = data["list_to_reduce"]
+
+    # Reduce the list using lambda functions and custom reducing
+    reduce_list = lambda list: reduce(lambda x, y: x + y, list)
+
+    # Reduce the list
+    reduced_list = reduce_list(list_to_reduce)
+
+    return jsonify({"success": True, "reduced_list": reduced_list}), 200
+
+
+@app.route("/combined_demo", methods=["GET"])
+def combined_demo():
+    data = request.get_json()
+    list_to_combine = data["list_to_combine"]
+
+    # Map, filter and reduce the list using lambda functions and custom mapping, filtering and reducing
+    combined_list = lambda list: reduce(
+        lambda x, y: x + y, map(lambda x: x[1] * 2, filter(lambda x: x[1] > 2, list))
+    )
+
+    # Combine the list
+    combined_list = combined_list(list_to_combine)
+
+    return jsonify({"success": True, "combined_list": combined_list}), 200
+
+
+@app.route("/combined_demo2", methods=["GET"])
+def transform_and_aggregate_lists():
+    data = request.get_json()
+    list_to_combine = data["list_to_combine"]
+
+    # Map, filter and reduce the list using lambda functions and custom mapping, filtering and reducing
+    combined_list = lambda list: reduce(
+        lambda x, y: x + y, map(lambda x: x[1] * 2, filter(lambda x: x[1] > 2, list))
+    )
+
+    # Combine the list
+    combined_list = combined_list(list_to_combine)
+
+    return jsonify({"success": True, "combined_list": combined_list}), 200
 
 
 # Return all models
