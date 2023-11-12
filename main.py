@@ -215,6 +215,37 @@ def sum():
         print(colored("Error summing lists:", "red"), e)
         return jsonify({"success": False, "message": "Error summing lists"}), 500
 
+# Beispiel-Funktionen
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+# Hauptfunktion, die je nach übergebenem Operator andere Funktionen aufruft
+def calculate(operation, a, b):
+    if operation == 'add':
+        return add(a, b)
+    elif operation == 'subtract':
+        return subtract(a, b)
+    elif operation == 'multiply':
+        return multiply(a, b)
+    else:
+        return "Invalid operation"
+
+# Flask-Route, die die Hauptfunktion aufruft
+@app.route('/calculate', methods=['POST'])
+def calculate_endpoint():
+    data = request.json
+    operation = data.get('operation')
+    a = data.get('a')
+    b = data.get('b')
+
+    result = calculate(operation, a, b)
+    return f"Result: {result}"
 
 @app.route("/sort_list", methods=["GET"])
 def sort_list():
